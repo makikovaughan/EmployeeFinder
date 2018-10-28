@@ -4,7 +4,21 @@ $(function () {
         const scoreArray = [];
 
         for (let i = 0; i < 10; i++) {
-            scoreArray.push($(`#formControlSelect${i+1}`).val());
+
+            if ($(`#formControlSelect${i + 1}`).val() === "1(Strongly Disagree)") {
+
+                scoreArray.push(1);
+
+            }
+            else if ($(`#formControlSelect${i + 1}`).val() === "5(Strongly Agree)") {
+                scoreArray.push(5);
+            }
+            else {
+                scoreArray.push(parseInt($(`#formControlSelect${i + 1}`).val()));
+            }
+
+            $(`#formControlSelect${i + 1}`).val("");
+
         }
 
         return scoreArray;
@@ -24,6 +38,15 @@ $(function () {
         }
 
         console.log(newEmployee);
+
+        $("#employee-name").val("");
+        $("#employee-photo").val("");
+
+        $.ajax({
+            method: "POST",
+            url: "api/survey",
+            data: newEmployee
+        });
 
     }
 
