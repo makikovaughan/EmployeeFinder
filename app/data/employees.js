@@ -17,3 +17,6 @@ var employeeData = [{
 
 module.exports = employeeData;
 
+
+//For reading file
+const fs = require('fs');

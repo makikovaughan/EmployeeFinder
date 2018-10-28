@@ -6,3 +6,7 @@ hr {
     height: 3px;
     background-color: darkgrey;
 }
+
+.api-list{
+    font-size: 25px!important;
+}

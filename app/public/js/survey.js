@@ -37,14 +37,12 @@ $(function () {
             scores: getScore(),
         }
 
-        console.log(newEmployee);
-
         $("#employee-name").val("");
         $("#employee-photo").val("");
 
         $.ajax({
             method: "POST",
-            url: "api/survey",
+            url: "api/employees",
             data: newEmployee
         });
 
