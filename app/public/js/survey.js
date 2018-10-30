@@ -44,6 +44,18 @@ $(function () {
             method: "POST",
             url: "api/employees",
             data: newEmployee
+        }).then(function (response) {
+
+            const data = response;
+
+            console.log(data);
+
+            $("#matched-person").text(data.name);
+            const img = $("<img>").addClass("img-fluid").attr("src", data.photo);
+            $("#matched-person").append(img);
+
+            $("#myModal").modal();
+            
         });
 
     }
