@@ -9,7 +9,7 @@ const getMatchedEmployee = function (employee, cb) {
         let total = 0;
 
         for (let i = 0; i < employeeList.length; i++) {
-                total += Math.abs(employee.scores[i] - e.scores[i]);
+            total += Math.abs(parseInt(employee.scores[i]) - parseInt(e.scores[i]));
         }
         employeeResult.push(total);
     });
@@ -18,7 +18,7 @@ const getMatchedEmployee = function (employee, cb) {
 
     const index = employeeResult.indexOf(min);
 
-    const matchedEmployee = employeeList[index];
+    matchedEmployee = employeeList[index];
 
     cb(matchedEmployee);
 

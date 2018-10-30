@@ -20,6 +20,7 @@ $(function () {
 
         e.preventDefault();
 
+        //New employee survey
         const newEmployee = {
             name: $("#employee-name").val().trim(),
             photo: $("#employee-photo").val().trim(),
@@ -29,23 +30,47 @@ $(function () {
         $("#employee-name").val("");
         $("#employee-photo").val("");
 
+        //Get the employee list to check if the employee took a survey already.
         $.ajax({
-            method: "POST",
-            url: "api/employees",
-            data: newEmployee
+            method: "GET",
+            url: "api/employees"
         }).then(function (response) {
+            const list = response;
 
-            const data = response;
+            //Check the duplicate
+            let duplicate = false;
 
-            console.log(data);
+            list.forEach(e => {
+                if (e.name === newEmployee.name) {
+                    //Make the duplicate true if there is a duplicate.
+                    duplicate = true;
+                }
+            });
 
-            $("#matched-person").text(data.name);
-            const img = $("<img>").addClass("img-fluid").attr("src", data.photo);
-            $("#matched-person").append(img);
+            if (duplicate) {
+                console.log("Duplicate employee.");
+            }
+            else { //Send a survey only if the employee has not sent a survey before.
+                $.ajax({
+                    method: "POST",
+                    url: "api/employees",
+                    data: newEmployee
+                }).then(function (response) {
 
-            $("#myModal").modal();
+                    const data = response;
 
+                    //Populate the result
+                    $("#matched-person").text(data.name);
+                    const img = $("<img>").addClass("img-fluid").attr("src", data.photo);
+                    $("#matched-person").append(img);
+
+                    //Open a pop up window to display
+                    $("#myModal").modal();
+
+                });
+            }
         });
+
 
     }
 
