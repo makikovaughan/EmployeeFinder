@@ -1,6 +1,6 @@
 var employeeData = [{
-    name: "Ahmed",
-    photo: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    name: "Snoopy",
+    photo: "https://res.cloudinary.com/dyais46lc/image/upload/v1540906966/snoopy.jpg",
     scores: [
         5,
         1,
@@ -63,8 +63,8 @@ var employeeData = [{
     ]
 },
 {
-    name: "Lou Ritter",
-    photo: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAkDAAAAJDhhZTI5NTk2LWQzZjUtNDJjZi1hMTM2LTQ3ZjNmYjE0YmY2NA.jpg",
+    name: "Woodstock",
+    photo: "https://res.cloudinary.com/dyais46lc/image/upload/v1540907160/woodstock.jpg",
     scores: [
         4,
         3,
@@ -79,8 +79,8 @@ var employeeData = [{
     ]
 },
 {
-    name: "Jordan Biason",
-    photo: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAisAAAAJGUxYzc4YzA0LWQxMzUtNGI4NS04YTFiLTkwYzM0YTZkNzA2NA.jpg",
+    name: "Charlie Brown",
+    photo: "https://res.cloudinary.com/dyais46lc/image/upload/v1540907467/charlie.jpg",
     scores: [
         4,
         4,
