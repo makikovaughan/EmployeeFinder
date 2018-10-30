@@ -48,7 +48,7 @@ $(function () {
             });
 
             if (duplicate) {
-                console.log("Duplicate employee.");
+                console.log("Duplicate employee name");
             }
             else { //Send a survey only if the employee has not sent a survey before.
                 $.ajax({
