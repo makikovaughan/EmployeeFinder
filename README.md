@@ -21,6 +21,6 @@ This application matches with another employee based on the user's survey. Answe
 ---
 1. Go to ([Employee Finder Site](https://thawing-ocean-68026.herokuapp.com/ )) to access the Employee Finder site.
 
-![home](./app/public/assets/images/home.png)
+![home](./app/public/assets/images/Home.png)
 
 
