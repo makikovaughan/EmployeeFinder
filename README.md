@@ -23,4 +23,14 @@ This application matches with another employee based on the user's survey. Answe
 
 ![home](./app/public/assets/images/Home.png)
 
+2. Click on Go to Survey button to go to [go to the survey page](https://thawing-ocean-68026.herokuapp.com/survey).
 
+![survey](./app/public/assets/images/surveyPage.png)
+
+3. Answer all question and click on submit, and then the pop up windwo shows up for the matched employee.
+![popup](./app/public/assets/images/matchedEmployee.png)
+
+### Author
+---
+
+Makiko Vaughan(makiko.vaughan@gmail.com)
