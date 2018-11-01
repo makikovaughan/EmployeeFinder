@@ -14,6 +14,18 @@ $(function () {
 
     }
 
+    const renderModal = function(data){
+
+        //Populate the result
+        $("#matched-person").text(data.name).append("<br>");
+        const img = $("<img>").addClass("img-fluid").attr("src", data.photo);
+        $("#matched-person").append(img);
+
+        //Open a pop up window to display
+        $("#myModal").modal();
+
+    }
+
 
     //Retrieve data from reservation.html
     const getData = function (e) {
@@ -63,13 +75,8 @@ $(function () {
                         console.log(data.error);
                     }
                     else {
-                        //Populate the result
-                        $("#matched-person").text(data.name).append("<br>");
-                        const img = $("<img>").addClass("img-fluid").attr("src", data.photo);
-                        $("#matched-person").append(img);
-
-                        //Open a pop up window to display
-                        $("#myModal").modal();
+                        //Display the matched employee on the Modal window.
+                        renderModal(data);
                     }
                 });
             }

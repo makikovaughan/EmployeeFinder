@@ -47,7 +47,7 @@ module.exports = function (app) {
         const name = req.body.name.split(" ").join("");
 
         getMatchedEmployee(data, function (matchedEmployee) {
-
+        // require("./matchedEmployee.js")(data, employeeList, function(matchedEmployee){
             if (!validator.isURL(data.photo)) {
 
                 //Notify error if the picture URL is not correct.
