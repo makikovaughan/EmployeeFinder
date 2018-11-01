@@ -64,7 +64,7 @@ $(function () {
                     }
                     else {
                         //Populate the result
-                        $("#matched-person").text(data.name);
+                        $("#matched-person").text(data.name).append("<br>");
                         const img = $("<img>").addClass("img-fluid").attr("src", data.photo);
                         $("#matched-person").append(img);
 
