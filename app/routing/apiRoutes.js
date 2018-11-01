@@ -1,4 +1,5 @@
 const employeeList = require('../data/employees.js');
+const validator = require('validator');
 
 //Checking the matched employee
 const getMatchedEmployee = function (employee, cb) {
@@ -42,17 +43,30 @@ module.exports = function (app) {
     //Receive the user's survey
     app.post("/api/employees", function (req, res) {
 
-        getMatchedEmployee(req.body, function (matchedEmployee) {
+        const data = req.body;
 
-            //Pushed the new information to the employee list.
-            employeeList.push(req.body);
+        getMatchedEmployee(data, function (matchedEmployee) {
 
-            //Return the matched employee information to the client
-            res.json(matchedEmployee);
+            if (!validator.isURL(data.photo)) {
 
-            //End the connection.
-            res.end();
+                res.json({error: "Invalid URL"});
+                res.end();
 
+            }
+            else if(!validator.isAlpha(data.name)){
+                res.json({error: "Invalid name"});
+                res.end();
+            }
+            else{
+                //Pushed the new information to the employee list.
+                employeeList.push(data);
+
+                //Return the matched employee information to the client
+                res.json(matchedEmployee);
+
+                //End the connection.
+                res.end();
+            }
         });
 
     });

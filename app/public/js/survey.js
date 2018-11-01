@@ -59,14 +59,18 @@ $(function () {
 
                     const data = response;
 
-                    //Populate the result
-                    $("#matched-person").text(data.name);
-                    const img = $("<img>").addClass("img-fluid").attr("src", data.photo);
-                    $("#matched-person").append(img);
+                    if (data.error) {
+                        console.log(data.error);
+                    }
+                    else {
+                        //Populate the result
+                        $("#matched-person").text(data.name);
+                        const img = $("<img>").addClass("img-fluid").attr("src", data.photo);
+                        $("#matched-person").append(img);
 
-                    //Open a pop up window to display
-                    $("#myModal").modal();
-
+                        //Open a pop up window to display
+                        $("#myModal").modal();
+                    }
                 });
             }
         });
