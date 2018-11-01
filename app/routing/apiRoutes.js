@@ -44,6 +44,7 @@ module.exports = function (app) {
     app.post("/api/employees", function (req, res) {
 
         const data = req.body;
+        const name = req.body.name.split(" ").join("");
 
         getMatchedEmployee(data, function (matchedEmployee) {
 
@@ -53,7 +54,7 @@ module.exports = function (app) {
                 res.end();
 
             }
-            else if(!validator.isAlpha(data.name)){
+            else if(!validator.isAlpha(name)){
                 res.json({error: "Invalid name"});
                 res.end();
             }
