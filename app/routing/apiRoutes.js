@@ -50,11 +50,13 @@ module.exports = function (app) {
 
             if (!validator.isURL(data.photo)) {
 
+                //Notify error if the picture URL is not correct.
                 res.json({error: "Invalid URL"});
                 res.end();
 
             }
             else if(!validator.isAlpha(name)){
+                //Notify error if the name contains other than alphabet.
                 res.json({error: "Invalid name"});
                 res.end();
             }
