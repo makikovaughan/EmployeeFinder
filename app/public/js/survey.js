@@ -56,7 +56,7 @@ $(function () {
 
         }).catch(function (err) {
             //Show the error message to the customer.
-            const errorDiv = $(`<div class="alert alert-danger" role="alert" style="position: z-index="999" fixed; top: 0; left: 50%; margin-left: -100px;">${err.responseJSON.msg}</div>`);
+            const errorDiv = $(`<div class="alert alert-danger" role="alert" style="position:fixed; z-index=999; top: 0; left: 50%; margin-left: -100px;">${err.responseJSON.msg}</div>`);
             $(".submit").prepend(errorDiv);
 
             //Make the error message disappeared after 5 seconds.
