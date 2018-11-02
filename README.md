@@ -7,14 +7,23 @@ This application matches with another employee based on the user's survey. Answe
 ## Structure of Files
 ---
 
+publics folder
 * home.html: The home page of survey site.
 * survey.html: The survey page where the user uses.
 * style.css: The style sheet for the html page.
 * survey.js: Javascript on the client side.
+
+routing folder
 * apiRoute.js: HTTP call javescript
 * htmlRoutes.js: Two routes to display home.html and survey.html.
+* matchedEmployee.js: Check the matched employee for the user.
+
+Main
 * server.js: Used in class: `express` and `path` to start a server.
+
+Data
 * employees.js: It contains the initial data(array of object).
+
 
 ***How to use***
 

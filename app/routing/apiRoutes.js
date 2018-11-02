@@ -46,23 +46,19 @@ module.exports = function (app) {
         require("./matchedEmployee.js")(employee, employeeList, function (matchedEmployee) {
 
             if (!validator.isURL(employee.photo)) {
-                console.log("URL");
                 //Notify error if the picture URL is not correct.
                 res.status(400).json({ msg: "Invalid image URL." });
             }
             else if (!validator.isAlpha(name)) {
-                console.log("Invalid name");
                 //Notify error if the name contains other than alphabet.
                 res.status(400).json({ msg: "Invalid name." });
             }
             // Check the duplicate employee
             else if (validateDuplicate(employee, employeeList)) {
-                console.log("Duplicate");
                 res.status(400).json({ msg: "Duplicate employee name." });
             }
             //Validate the survey value.
             else if (validateSurvey(employee)) {
-                console.log("bad data");
                 res.status(400).json({ msg: "Bad data for survey." });
             }
             else {

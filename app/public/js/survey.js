@@ -55,7 +55,6 @@ $(function () {
             renderModal(employee);
 
         }).catch(function (err) {
-            console.log(err, err.responseJSON.msg);
             //Show the error message to the customer.
             const errorDiv = $(`<div class="alert alert-danger" role="alert" style="position:fixed; z-index=999; top: 0; left: 50%; margin-left: -100px;">${err.responseJSON.msg}</div>`);
             $("body").prepend(errorDiv);

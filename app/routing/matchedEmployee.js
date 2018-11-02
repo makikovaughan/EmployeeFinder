@@ -8,8 +8,6 @@ module.exports = function (employee, employeeList, cb) {
         scores: []
     };
 
-    let duplicate = false;
-
     employeeList.forEach(e => {
 
         let total = 0;
