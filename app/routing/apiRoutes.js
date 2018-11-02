@@ -1,12 +1,12 @@
 const employeeList = require('../data/employees.js');
 const validator = require('validator');
 
-const validateDuplicate = function(employee, list){
+const validateDuplicate = function (employee, list) {
 
     let duplicate = false;
 
     list.forEach(e => {
-        if(e.name === employee.name && e.photo === employee.photo){
+        if (e.name.toLowerCase() === employee.name.toLowerCase() && e.photo === employee.photo) {
             duplicate = true;
         }
     });
@@ -15,15 +15,15 @@ const validateDuplicate = function(employee, list){
 
 }
 
-const validateSurvey = function(employee){
+const validateSurvey = function (employee) {
 
     let flag = false;
 
     employee.scores.forEach(e => {
-        if(!validator.isInt(e, {gt:0, lt:6})){
+        if (!validator.isInt(e, { gt: 0, lt: 6 })) {
             flag = true;
         }
-        
+
     });
 
     return flag;
@@ -37,41 +37,45 @@ module.exports = function (app) {
     });
 
     //Receive the user's survey
-    app.post("/api/employees", function (req, res) {
+    app.post("/api/employees", function (req, res, next) {
 
         const employee = req.body;
+
         const name = req.body.name.split(" ").join("");
 
-        //Check matched employee and error validation
-        require("./matchedEmployee.js")(employee, employeeList, function(matchedEmployee){
+        require("./matchedEmployee.js")(employee, employeeList, function (matchedEmployee) {
+
             if (!validator.isURL(employee.photo)) {
-
+                console.log("URL");
                 //Notify error if the picture URL is not correct.
-                res.status(400).json({ msg: "Invalid image URL."});
-
+                res.status(400).json({ msg: "Invalid image URL." });
             }
-            else if(!validator.isAlpha(name)){
+            else if (!validator.isAlpha(name)) {
+                console.log("Invalid name");
                 //Notify error if the name contains other than alphabet.
                 res.status(400).json({ msg: "Invalid name." });
             }
             // Check the duplicate employee
-            else if(validateDuplicate(employee, employeeList)){
-                res.status(400).json({msg: "Duplicate employee name."});
-            } 
-            //Validate the survey value.
-            else if(validateSurvey(employee)){
-                res.status(400).json({msg: "Bad data for survey."});
+            else if (validateDuplicate(employee, employeeList)) {
+                console.log("Duplicate");
+                res.status(400).json({ msg: "Duplicate employee name." });
             }
-            else{
+            //Validate the survey value.
+            else if (validateSurvey(employee)) {
+                console.log("bad data");
+                res.status(400).json({ msg: "Bad data for survey." });
+            }
+            else {
                 //Pushed the new information to the employee list.
                 employeeList.push(employee);
 
                 // Return the matched employee information to the client
                 // End connection
                 res.json(matchedEmployee);
+
             }
+
         });
 
     });
-
 }
