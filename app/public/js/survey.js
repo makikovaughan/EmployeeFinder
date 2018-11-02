@@ -14,7 +14,7 @@ $(function () {
 
     }
 
-    const renderModal = function(data){
+    const renderModal = function (data) {
 
         //Populate the result
         $("#matched-person").text(data.name).append("<br>");
@@ -42,46 +42,28 @@ $(function () {
         $("#employee-name").val("");
         $("#employee-photo").val("");
 
-        //Get the employee list to check if the employee took a survey already.
+
         $.ajax({
-            method: "GET",
-            url: "api/employees"
+            method: "POST",
+            url: "api/employees",
+            data: newEmployee
         }).then(function (response) {
-            const list = response;
 
-            //Check the duplicate
-            let duplicate = false;
+            const employee = response;
 
-            list.forEach(e => {
-                if (e.name === newEmployee.name) {
-                    //Make the duplicate true if there is a duplicate.
-                    duplicate = true;
-                }
-            });
+            //Display the matched employee on the Modal window.
+            renderModal(employee);
 
-            if (duplicate) {
-                console.log("Duplicate employee name");
-            }
-            else { //Send a survey only if the employee has not sent a survey before.
-                $.ajax({
-                    method: "POST",
-                    url: "api/employees",
-                    data: newEmployee
-                }).then(function (response) {
+        }).catch(function (err) {
+            //Show the error message to the customer.
+            const errorDiv = $(`<div class="alert alert-danger show" style="position: fixed; top: 0; left: 50%; margin-left: -100px;">${err.responseJSON.msg}</div>`);
+            $("body").prepend(errorDiv);
 
-                    const data = response;
-
-                    if (data.error) {
-                        console.log(data.error);
-                    }
-                    else {
-                        //Display the matched employee on the Modal window.
-                        renderModal(data);
-                    }
-                });
-            }
+            //Make the error message disappeared after 5 seconds.
+            setTimeout(function(){
+                errorDiv.remove();
+            }, 5000);
         });
-
 
     }
 
